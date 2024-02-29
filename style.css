@@ -1,0 +1,32 @@
+/*sets all elements box-sizing to border-box, *::after and *::before selects the elements which are created by ::after, and ::before pseudo selector */
+*, 
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/* styling the div which contains the generated div*/
+.drawingArea {
+    height: 700px;
+    width: 700px;
+    background-color: white;
+    border: 1px solid red;
+    margin: 0px auto 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+/* arranges the generated div*/
+.divPixels {
+    flex: 1;
+    background-color: white;
+    border: 1px solid black;
+}
+/* just for checking */
+.divPixels:hover {
+    background-color: red;
+}
