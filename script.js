@@ -1,4 +1,17 @@
-const drawingArea = document.querySelector(".drawingArea")
+const drawingArea = document.querySelector(".drawingArea");
+const buttons = document.querySelector(".buttons");
+
+//TODO --function to get user input, I think :(
+//get grid size form user 
+let gridSize = 16;
+//calculates the size for flexBasis in percentage
+let divSize = 100/gridSize;
+//total Div in the grid
+let totalDiv = gridSize * gridSize;
+//isDrawing idea stolen from mdn web docs example
+let isDrawing = false;
+//mode
+let mode = "draw";
 
 //creates div --is it needed?
 function createDiv(flexBasis) {
@@ -11,47 +24,51 @@ function createDiv(flexBasis) {
     drawingArea.appendChild(div);
 }
 
-//TODO --function to get user input, I think :(
-//get grid size form user 
-let gridSize = 16;
-//calculate the size for flexBasis in percentage
-let divSize = 100/gridSize;
-//total Div in the grid
-let totalDiv = gridSize * gridSize;
+//sets the className to change colors according to the mode var
+function colorDiv (event) {
+    let target = event.target;
+    if (target.className !== "drawingArea") {
+        if(mode === "draw"){
+            target.setAttribute("class", "divPixelsBlack");
+        }
+        else if(mode === "erase") {
+            target.setAttribute("class", "divPixels");
+        }
+    }
+}
 
 //creates the grid
 while(totalDiv--) {
     createDiv(divSize);
 }
-
-function colorDivBlack (event) {
-    let target = event.target;
-    if (target.className !== "drawingArea") {
-        target.setAttribute("class", "divPixelsBlack");
-    }
-}
-
-function colorDivWhite (event) {
-    let target = event.target;
-    if (target.className !== "drawingArea") {
-        target.setAttribute("class", "divPixels");
-    }
-}
-
-//isDrawing idea stolen from mdn web docs example
-let isDrawing = false;
-
-drawingArea.addEventListener("mousedown", event => {
-    colorDivBlack(event);
-    isDrawing = true;
-} );
-
-drawingArea.addEventListener("mouseover", event => {
-    if(isDrawing) {
-        colorDivBlack(event);
+//check which button is clicked and changes 
+buttons.addEventListener("click", event => {
+    switch(event.target.id) {
+        case "draw":
+            mode = "draw";
+            break;
+        case "erase":
+            mode = "erase";
+            break;
+        case "resize":
+            break;
     }
 });
-drawingArea.addEventListener("mouseup", event => {
+//mouseDown listener calls the colorDiv function  
+//isDrawing(var) keeps track of mouseDown movement 
+drawingArea.addEventListener("mousedown", event => {
+    colorDiv(event);
+    isDrawing = true;
+} );
+// mouseOver listener calls changes the color only if isDrawing(var) is true
+//if statement is done to keep track if mouse is pressed down while moving
+drawingArea.addEventListener("mouseover", event => {
+    if(isDrawing) {
+        colorDiv(event);
+    }
+});
+//mouse released no drawing so isDrawing(var) is false
+drawingArea.addEventListener("mouseup", () => {
     if(isDrawing) {
         isDrawing = false;
     }

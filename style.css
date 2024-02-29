@@ -4,19 +4,43 @@
 *::after {
     box-sizing: border-box;
 }
+/* from real time colors
+blue:
+--text: #050315;
+--background: #fbfbfe;
+--primary: #2f27ce;
+--secondary: #dedcff;
+--accent: #433bff;
+
+--text: #042218;
+--background: #f5fefb;
+--primary: #22e4b2;
+--secondary: #83ddf0;
+--accent: #5fc1ec; */
 
 * {
     margin: 0px;
     padding: 0px;
+    background-color: #fbfbfe;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
+h1 {
+    margin: 20px;
+}
 /* styling the div which contains the generated div*/
 .drawingArea {
     height: 700px;
     width: 700px;
     background-color: white;
     border: 1px solid red;
-    margin: 40px auto 0px auto;
+    /* margin: 0px auto 0px auto; */
     display: flex;
     flex-wrap: wrap;
 }
