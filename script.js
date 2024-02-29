@@ -5,7 +5,7 @@ function createDiv(flexBasis) {
     const div = document.createElement("div");
     //add style to the div
     div.setAttribute("class","divPixels");
-
+    //adds style flexBasis so the div spread in a square like manner
     div.style.flexBasis = `${flexBasis}%`;
     //add it to the dom
     drawingArea.appendChild(div);
@@ -23,4 +23,37 @@ let totalDiv = gridSize * gridSize;
 while(totalDiv--) {
     createDiv(divSize);
 }
+
+function colorDivBlack (event) {
+    let target = event.target;
+    if (target.className !== "drawingArea") {
+        target.setAttribute("class", "divPixelsBlack");
+    }
+}
+
+function colorDivWhite (event) {
+    let target = event.target;
+    if (target.className !== "drawingArea") {
+        target.setAttribute("class", "divPixels");
+    }
+}
+
+//isDrawing idea stolen from mdn web docs example
+let isDrawing = false;
+
+drawingArea.addEventListener("mousedown", event => {
+    colorDivBlack(event);
+    isDrawing = true;
+} );
+
+drawingArea.addEventListener("mouseover", event => {
+    if(isDrawing) {
+        colorDivBlack(event);
+    }
+});
+drawingArea.addEventListener("mouseup", event => {
+    if(isDrawing) {
+        isDrawing = false;
+    }
+});
 

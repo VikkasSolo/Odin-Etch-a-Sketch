@@ -16,7 +16,7 @@
     width: 700px;
     background-color: white;
     border: 1px solid red;
-    margin: 0px auto 0px auto;
+    margin: 40px auto 0px auto;
     display: flex;
     flex-wrap: wrap;
 }
@@ -26,7 +26,13 @@
     background-color: white;
     border: 1px solid black;
 }
-/* just for checking */
-.divPixels:hover {
-    background-color: red;
+
+/* changes color to black */
+.divPixelsBlack {
+    transition: 100ms;
+    background-color: black;
+}
+
+.eraser {
+    background-color: white;
 }
