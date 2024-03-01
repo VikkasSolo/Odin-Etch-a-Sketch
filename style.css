@@ -11,13 +11,7 @@ blue:
 --primary: #2f27ce;
 --secondary: #dedcff;
 --accent: #433bff;
-
---text: #042218;
---background: #f5fefb;
---primary: #22e4b2;
---secondary: #83ddf0;
---accent: #5fc1ec; */
-
+*/
 * {
     margin: 0px;
     padding: 0px;
@@ -39,7 +33,7 @@ h1 {
     height: 700px;
     width: 700px;
     background-color: white;
-    border: 1px solid red;
+    border: 1px solid #2f27ce;
     /* margin: 0px auto 0px auto; */
     display: flex;
     flex-wrap: wrap;
@@ -47,16 +41,13 @@ h1 {
 /* arranges the generated div*/
 .divPixels {
     flex: 1;
-    background-color: white;
-    border: 1px solid black;
+    transition: 80ms;
+    border: 1px solid #f0f0fc;
+    background-color: #fbfbfe;
 }
 
 /* changes color to black */
 .divPixelsBlack {
-    transition: 100ms;
+    transition: 80ms;
     background-color: black;
-}
-
-.eraser {
-    background-color: white;
 }

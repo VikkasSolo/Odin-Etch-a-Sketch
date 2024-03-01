@@ -4,9 +4,20 @@ const buttons = document.querySelector(".buttons");
 let isDrawing = false;
 //mode
 let mode = "draw";
+//set default value
+let gridSize = 16;
 
-
-    //TODO --function to get user input, I think :(
+//creates div
+function createDiv(flexBasis) {
+    const div = document.createElement("div");
+    //add style to the div
+    div.setAttribute("class","divPixels");
+    //adds style flexBasis so the div spread in a square like manner
+    div.style.flexBasis = `${flexBasis}%`;
+    //add it to the dom
+    drawingArea.appendChild(div);
+}
+//creates the Grid 
 function createGrid(gridSize) {
     //calculates the size for flexBasis in percentage
     let divSize = 100/gridSize;
@@ -17,16 +28,11 @@ function createGrid(gridSize) {
         createDiv(divSize);
     }
 }
-
-//creates div and it can also delete--is it needed?
-function createDiv(flexBasis) {
-    const div = document.createElement("div");
-    //add style to the div
-    div.setAttribute("class","divPixels");
-    //adds style flexBasis so the div spread in a square like manner
-    div.style.flexBasis = `${flexBasis}%`;
-    //add it to the dom
-    drawingArea.appendChild(div);
+//deletes the div 
+function deleteGrid(){
+    while (drawingArea.hasChildNodes()) {
+        drawingArea.removeChild(drawingArea.firstChild);
+    }
 }
 
 //sets the className to change colors according to the mode var
@@ -42,7 +48,7 @@ function colorDiv (event) {
     }
 }
 //default grid size
-createGrid(16);
+createGrid(gridSize);
 
 //check which button is clicked and changes 
 buttons.addEventListener("click", event => {
@@ -52,6 +58,17 @@ buttons.addEventListener("click", event => {
             break;
         case "erase":
             mode = "erase";
+            break;
+        case "resize":
+            deleteGrid();
+            gridSize = prompt("Enter a Grid Size (max 100)");
+            if(gridSize <= 100){
+                createGrid(gridSize);
+            }
+            else {
+                alert("Enter a correct div number");
+                createGrid(16);
+            }
             break;
     }
 });
