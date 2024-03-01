@@ -59,15 +59,16 @@ buttons.addEventListener("click", event => {
         case "erase":
             mode = "erase";
             break;
+        case "color":
+            break;
         case "resize":
-            deleteGrid();
-            gridSize = prompt("Enter a Grid Size (max 100)");
-            if(gridSize <= 100){
+            gridSize = +prompt("Enter a Grid Size (max 100)");
+            if(gridSize <= 100 && gridSize > 0){
+                deleteGrid();
                 createGrid(gridSize);
             }
             else {
                 alert("Enter a correct div number");
-                createGrid(16);
             }
             break;
     }
