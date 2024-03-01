@@ -61,17 +61,26 @@ div.buttons > button {
     border: 0;
     border-radius: 40px;
     font-size: 16px;
-    background-color: #E0E0FD;
+    background-color: #dedcff;
+    color: #050315;
+    cursor: pointer;
 }
 
-span {
+span,input {
     border:0 ;
     background-color: #E0E0FD;
     padding: 1% 2%;
     border-radius: 40px;
+    background-color: #dedcff;
+    color: #050315;
+    cursor: pointer;
 }
 
-div.buttons > button:focus {
+div.buttons > button:hover {
     background-color: #2f27ce;
-    color: #fbfbfe;
+    color:#fbfbfe;
+}
+span:hover {
+    background-color: #2f27ce;
+    color:#fbfbfe;
 }

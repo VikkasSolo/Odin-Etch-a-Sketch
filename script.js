@@ -66,7 +66,8 @@ createGrid(gridSize);
 
 //check which button is clicked and changes 
 buttons.addEventListener("click", event => {
-    switch(event.target.id) {
+    let target = event.target
+    switch(target.id) {
         case "draw":
             mode = "draw";
             break;
@@ -76,11 +77,14 @@ buttons.addEventListener("click", event => {
         case "color":
             mode = "color";
             break;
+        case "clear":
+            deleteGrid();
+            createGrid(gridSize);
+            break;
         case "resize":
             gridSize = +prompt("Enter a Grid Size (max 100)");
             if(gridSize <= 100 && gridSize > 0){
                 deleteGrid();
-                createGrid(gridSize);
             }
             else {
                 alert("Enter a correct div number");
