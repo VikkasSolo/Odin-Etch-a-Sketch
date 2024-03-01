@@ -6,7 +6,8 @@ let isDrawing = false;
 let mode = "draw";
 //set default value
 let gridSize = 16;
-
+//color value 
+let colorValue = "#2f27ce";
 //creates div
 function createDiv(flexBasis) {
     const div = document.createElement("div");
@@ -40,13 +41,26 @@ function colorDiv (event) {
     let target = event.target;
     if (target.className !== "drawingArea") {
         if(mode === "draw"){
-            target.setAttribute("class", "divPixelsBlack");
+            //#050315 is black color i think 
+            target.style.backgroundColor = "#050315";
+            target.style.borderColor = "#050315"
         }
         else if(mode === "erase") {
-            target.setAttribute("class", "divPixels");
+            target.style.backgroundColor = "#fbfbfe";
+            target.style.borderColor = "#f0f0fc"
+        }
+        else if(mode === "color") {
+            target.style.backgroundColor = colorValue;
+            target.style.borderColor = colorValue;
         }
     }
 }
+//checks for colorPicker change and sets colorValue
+const colorPicker = document.querySelector("input");
+colorPicker.addEventListener("input", (event) => {
+    colorValue = event.target.value;
+});
+
 //default grid size
 createGrid(gridSize);
 
@@ -60,6 +74,7 @@ buttons.addEventListener("click", event => {
             mode = "erase";
             break;
         case "color":
+            mode = "color";
             break;
         case "resize":
             gridSize = +prompt("Enter a Grid Size (max 100)");

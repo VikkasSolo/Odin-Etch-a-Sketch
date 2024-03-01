@@ -48,15 +48,12 @@ h1 {
 }
 
 /* changes color to black */
-.divPixelsBlack {
-    transition: 80ms;
-    background-color: black;
-}
+
 
 .buttons {
     display: flex;
     width: 600px;
-    gap: 10%;
+    gap: 2%;
 }
 
 div.buttons > button {
@@ -70,7 +67,7 @@ div.buttons > button {
 span {
     border:0 ;
     background-color: #E0E0FD;
-    padding: 2%;
+    padding: 1% 2%;
     border-radius: 40px;
 }
 
