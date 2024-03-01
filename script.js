@@ -1,19 +1,24 @@
 const drawingArea = document.querySelector(".drawingArea");
 const buttons = document.querySelector(".buttons");
-
-//TODO --function to get user input, I think :(
-//get grid size form user 
-let gridSize = 16;
-//calculates the size for flexBasis in percentage
-let divSize = 100/gridSize;
-//total Div in the grid
-let totalDiv = gridSize * gridSize;
 //isDrawing idea stolen from mdn web docs example
 let isDrawing = false;
 //mode
 let mode = "draw";
 
-//creates div --is it needed?
+
+    //TODO --function to get user input, I think :(
+function createGrid(gridSize) {
+    //calculates the size for flexBasis in percentage
+    let divSize = 100/gridSize;
+    //total Div in the grid
+    let totalDiv = gridSize * gridSize;
+    //creates the grid
+    while(totalDiv--) {
+        createDiv(divSize);
+    }
+}
+
+//creates div and it can also delete--is it needed?
 function createDiv(flexBasis) {
     const div = document.createElement("div");
     //add style to the div
@@ -36,11 +41,9 @@ function colorDiv (event) {
         }
     }
 }
+//default grid size
+createGrid(16);
 
-//creates the grid
-while(totalDiv--) {
-    createDiv(divSize);
-}
 //check which button is clicked and changes 
 buttons.addEventListener("click", event => {
     switch(event.target.id) {
@@ -49,8 +52,6 @@ buttons.addEventListener("click", event => {
             break;
         case "erase":
             mode = "erase";
-            break;
-        case "resize":
             break;
     }
 });
