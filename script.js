@@ -43,8 +43,21 @@ function randomColor() {
     for (let i =  0; i < 6; i++) {
         color += hexValue[Math.floor(Math.random() * 16)];
     }
-    console.log(color);
     return color;
+}
+//darkens the color
+function darkening(valueToDark) {
+    let darkeningValue = [];
+    valueToDark = valueToDark.slice(valueToDark.indexOf("(") + 1, valueToDark.indexOf(")")).split(",");
+    if (valueToDark[0] === "") {
+        valueToDark = ["255","255","255"];
+    }
+    for(let i in valueToDark) {
+        darkeningValue[i] = parseInt(valueToDark[i]);
+        darkeningValue[i] -= 27;
+    }
+    // darkeningValue = darkeningValue.toString();
+    return (`rgb(${darkeningValue})`);
 }
 
 //sets the className to change colors according to the mode var
@@ -69,6 +82,11 @@ function colorDiv (event) {
             target.style.backgroundColor = colorValue;
             target.style.borderColor = colorValue;
         }
+        else if(mode === "grayScale") {
+            target.style.backgroundColor = darkening(target.style.backgroundColor);
+            target.style.borderColor = darkening(target.style.borderColor);
+        }
+
     }
 }
 //checks for colorPicker change and sets colorValue
@@ -99,6 +117,10 @@ buttons.addEventListener("click", event => {
             break;
         case "rainbow":
             mode = "rainbow";
+            break;
+        case "grayScale":
+            mode = "grayScale";
+
             break;
         case "resize":
             gridSize = +prompt("Enter a Grid Size (max 100)");
