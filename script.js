@@ -36,6 +36,17 @@ function deleteGrid(){
     }
 }
 
+//generates a random hex color 
+function randomColor() {
+    let hexValue = "1234567890ABCDEF";
+    let color = "#";
+    for (let i =  0; i < 6; i++) {
+        color += hexValue[Math.floor(Math.random() * 16)];
+    }
+    console.log(color);
+    return color;
+}
+
 //sets the className to change colors according to the mode var
 function colorDiv (event) {
     let target = event.target;
@@ -50,6 +61,11 @@ function colorDiv (event) {
             target.style.borderColor = "#f0f0fc"
         }
         else if(mode === "color") {
+            target.style.backgroundColor = colorValue;
+            target.style.borderColor = colorValue;
+        }
+        else if(mode === "rainbow") {
+            colorValue = randomColor();
             target.style.backgroundColor = colorValue;
             target.style.borderColor = colorValue;
         }
@@ -81,10 +97,14 @@ buttons.addEventListener("click", event => {
             deleteGrid();
             createGrid(gridSize);
             break;
+        case "rainbow":
+            mode = "rainbow";
+            break;
         case "resize":
             gridSize = +prompt("Enter a Grid Size (max 100)");
             if(gridSize <= 100 && gridSize > 0){
                 deleteGrid();
+                createGrid(gridSize);
             }
             else {
                 alert("Enter a correct div number");
